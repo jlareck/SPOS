@@ -12,8 +12,6 @@ public class Server {
     private ServerSocketChannel serverSocketChannel;
     private static final int PORT = 9000;
 
-    private int functionsAmount;
-    private List<Integer> args;
 
     private boolean cancel = true;
     private List<Process> processes;
@@ -21,6 +19,8 @@ public class Server {
     private InetSocketAddress address;
     private Process processF;
     private Process processG;
+    private int count = 0;
+
 
     public Process getProcessF() {
         return processF;
@@ -31,8 +31,8 @@ public class Server {
     }
 
 
-    public Server(int port, String action) {
-        this.address = new InetSocketAddress("localhost", port);
+    public Server(String action) {
+        this.address = new InetSocketAddress("localhost", PORT);
         this.action = action;
         processes = new ArrayList<>();
 
@@ -56,77 +56,37 @@ public class Server {
            SocketChannel socketChannel = serverSocketChannel.accept();
 
            if (socketChannel != null) {
-
                buffer.clear();
                buffer.put(action.getBytes());
                buffer.flip();
                socketChannel.write(buffer);
                buffer.clear();
-
-               int numRead = socketChannel.read(buffer);
-               if(numRead == -1) {
+               int size = socketChannel.read(buffer);
+               if(size == -1) {
                    socketChannel.close();
                    continue;
                }
-               //creating byte array for message
-               byte[] data = new byte[numRead];
-               System.arraycopy(buffer.array(), 0, data, 0, numRead);
+               byte[] data = new byte[size];
+               buffer.flip();
+               buffer.get(data);
                String gotData = new String(data);
                System.out.println(gotData);
-//               if (!gotData.isEmpty()){
-//                   break;
-//               }
-             //  handle(socketChannel);
+               count++;
+               if (count == 2) {
+                   cancel = false;
+               }
+
            }
 
         }
+        processF.destroy();
+        processG.destroy();
 
 
    }
-   private void sendMessage(SocketChannel socket){
-        try {
-            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
-            String s = action;
-            byteBuffer.put(s.getBytes());
-            byteBuffer.flip();
-            socket.write(byteBuffer);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
-    private void handle(SocketChannel socket){
-        try {
-            sendMessage(socket);
-
-            read(socket);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Function that reading message from client
-     *
-     * @throws IOException
-     */
-    private void read(SocketChannel socket) throws IOException {
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        int numRead = socket.read(byteBuffer);
-        if (numRead == -1) {
-            socket.close();
-            return;
-        }
-        //creating byte array for message
-        byte[] data = new byte[numRead];
-        System.arraycopy(byteBuffer.array(), 0, data, 0, numRead);
-        String gotData = new String(data);
-        System.out.println("Got:" + gotData);
-
-    }
    public static void main(String[] args) throws IOException {
-       new Server(9000, "1").run();
+       new Server( "1").run();
    }
 
 

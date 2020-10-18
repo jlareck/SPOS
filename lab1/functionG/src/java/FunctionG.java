@@ -7,8 +7,8 @@ import java.nio.channels.SocketChannel;
 public class FunctionG {
 
     private SocketChannel socketChannel;
-    public FunctionG(int port) throws IOException  {
-        InetSocketAddress address = new InetSocketAddress("localhost", port);
+    public FunctionG() throws IOException  {
+        InetSocketAddress address = new InetSocketAddress("localhost", 9000);
         socketChannel = SocketChannel.open(address);
     }
     void run() throws IOException, InterruptedException {
@@ -19,12 +19,13 @@ public class FunctionG {
         String messageStr = new String(message);
         buffer.clear();
         int value = IntOps.funcG(Integer.parseInt(messageStr));
-        String result = ""+value;
+
+        String result = "Function G "+value;
         buffer.put(result.getBytes());
         buffer.flip();
         socketChannel.write(buffer);
     }
     public static void main(String[] args) throws IOException, InterruptedException {
-        new FunctionG(9000).run();
+        new FunctionG().run();
     }
 }
