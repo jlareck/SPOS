@@ -10,20 +10,22 @@ public class FunctionF {
     public FunctionF() throws IOException  {
         socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 9000));
     }
-    void run() throws IOException, InterruptedException {
+    void run(String messageStr) throws IOException, InterruptedException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-        byte[] message = new byte[socketChannel.read(buffer)];
-        buffer.flip();
-        buffer.get(message);
-        String messageStr = new String(message);
-        buffer.clear();
-        int value = IntOps.funcG(Integer.parseInt(messageStr));
-        String result = "Function F "+value;
+//        byte[] message = new byte[socketChannel.read(buffer)];
+//        buffer.flip();
+//        buffer.get(message);
+//       // Result res = new Result(0,-1);
+//       // String messageStr = new String(message);
+//        buffer.clear();
+        int value = IntOps.funcF(Integer.parseInt(messageStr));
+        String result = "F "+ value;
         buffer.put(result.getBytes());
         buffer.flip();
         socketChannel.write(buffer);
     }
+
     public static void main(String[] args) throws IOException, InterruptedException {
-        new FunctionF().run();
+        new FunctionF().run(args[0]);
     }
 }
