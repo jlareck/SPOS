@@ -8,7 +8,7 @@ import java.nio.channels.SocketChannel;
 public class FunctionF {
     private SocketChannel socketChannel;
     public FunctionF() throws IOException  {
-        socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 9000));
+
     }
     void run(String messageStr) throws IOException, InterruptedException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -18,7 +18,10 @@ public class FunctionF {
 //       // Result res = new Result(0,-1);
 //       // String messageStr = new String(message);
 //        buffer.clear();
+//       Thread.sleep(5000);
         int value = IntOps.funcF(Integer.parseInt(messageStr));
+        socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 9000));
+
         String result = "F "+ value;
         buffer.put(result.getBytes());
         buffer.flip();

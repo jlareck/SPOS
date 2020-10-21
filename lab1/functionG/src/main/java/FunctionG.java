@@ -3,13 +3,12 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import org.apache.commons.lang3.SerializationUtils;
+
 public class FunctionG {
 
     private SocketChannel socketChannel;
     public FunctionG() throws IOException  {
-        InetSocketAddress address = new InetSocketAddress("localhost", 9000);
-        socketChannel = SocketChannel.open(address);
+
     }
     void run(String messageStr) throws IOException, InterruptedException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -18,8 +17,9 @@ public class FunctionG {
 //        buffer.get(message);
 //        String messageStr = new String(message);
 //        buffer.clear();
-
+      //  Thread.sleep(5000);
         int value = IntOps.funcG(Integer.parseInt(messageStr));
+        socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 9000));
         System.out.println(value);
         String result = "G "+ value;
         buffer.put(result.getBytes());
