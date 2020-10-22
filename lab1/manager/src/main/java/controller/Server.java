@@ -60,7 +60,6 @@ public class Server {
             ProcessBuilder builderG = new ProcessBuilder("java", "-jar", pathG, String.valueOf(action));
             if (action.equals("0") || action.equals("2") || action.equals("4")) {
                 processF = builderF.start();
-
                 processG = builderG.start();
             }
             else {
@@ -146,7 +145,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        new Server( "4").run();
+        new Menu().menu();
     }
 
 
