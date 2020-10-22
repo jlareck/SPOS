@@ -24,11 +24,12 @@ public class KeyInteractor {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+
                 PauseHandler.startPrompt();
+
             }
             if (e.getKeyCode() == KeyEvent.VK_Q) {
-                //Results.printMainResult( );
-                System.out.println("kek lol");
+                System.out.println("Good bye user");
                 PauseHandler.stop();
             }
         }
