@@ -7,8 +7,27 @@ import java.nio.channels.SocketChannel;
 public class FunctionG {
 
     private SocketChannel socketChannel;
-    public FunctionG() throws IOException  {
+    public FunctionG() throws IOException  {}
+    public int calculateG(String command) throws InterruptedException {
 
+        switch (command) {
+            case "0":
+                Thread.sleep(1000);
+                return 5;
+            case "1":
+                return 5;
+            case "2":
+                while (true) {}
+            case "3":
+                return 0;
+            case "4" : {
+                while(true){}
+            }
+            case "5": {
+               return 5;
+            }
+        }
+        return 0;
     }
     void run(String messageStr) throws IOException, InterruptedException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
