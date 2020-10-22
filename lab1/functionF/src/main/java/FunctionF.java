@@ -7,7 +7,7 @@ import java.nio.channels.SocketChannel;
 
 public class FunctionF {
     private SocketChannel socketChannel;
-    public FunctionF() throws IOException  {}
+    public FunctionF(){}
     public int calculateF(String command) throws InterruptedException {
 
         switch (command) {
@@ -34,7 +34,6 @@ public class FunctionF {
         //calculateF(messageStr);
         int value =  IntOps.funcF(Integer.parseInt(messageStr));
         socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 9000));
-
         String result = "F "+ value;
         buffer.put(result.getBytes());
         buffer.flip();
