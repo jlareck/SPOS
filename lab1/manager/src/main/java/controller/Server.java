@@ -31,13 +31,17 @@ public class Server {
 
     private static Process processF;
     private static Process processG;
-    private int count = 0;
 
+    public static boolean fDone = false;
+    public static boolean gDone = false;
+
+    private int count = 0;
+    List<String> resultStr;
     public Server(String action) {
         this.address = new InetSocketAddress("localhost", PORT);
         this.action = action;
         results = new ArrayList<>();
-
+        resultStr = new ArrayList<>();
     }
     public void run() throws IOException {
         new Thread( ( ) -> {
@@ -56,6 +60,7 @@ public class Server {
             ProcessBuilder builderG = new ProcessBuilder("java", "-jar", pathG, String.valueOf(action));
             if (action.equals("0") || action.equals("2") || action.equals("4")) {
                 processF = builderF.start();
+
                 processG = builderG.start();
             }
             else {
@@ -83,42 +88,61 @@ public class Server {
                     buffer.get(data);
                     buffer.clear();
                     String gotData = new String(data);
-                    System.out.println(gotData);
+
+
+
 
                     String[] parsedData = gotData.split(" ");
+                    String functionResult = "The result of function " + parsedData[0] + " is: " + parsedData[1];
+
+                    resultStr.add(functionResult);
+
+                    if (parsedData[0].equals("F")) {
+                        System.out.println("Server received result from function F");
+                        fDone = true;
+                    }
+
+                    else if (parsedData[0].equals("G")) {
+                        System.out.println("Server received result from function G");
+                        gDone = true;
+                    }
                     if (parsedData[1].equals("0")) {
                         System.out.println("The function " + parsedData[0] + " returned zero");
                         end = System.nanoTime();
                         System.out.println("Time of execution: " + (end - start));
-                        PauseHandler.stop();
+                       // PauseHandler.stop();
                         break;
                     }
+
+
+
                     results.add(Integer.parseInt(parsedData[1]));
-                    count++;
-                    if (count == 2) {
+
+                    if (fDone && gDone) {
+                        System.out.println("STATUS: SUCCESS");
                         int res = 1;
                         for (Integer value: results) {
                             res *= value;
                         }
-                        System.out.println("Multiplication result: " + res);
+                        resultStr.add("Multiplication result: " + res);
+
                         break;
                     }
                 }
             }
-
-          //  PauseHandler.stop();
-        }catch (IOException error) {
+        } catch (IOException error) {
             serverSocketChannel.close();
             PauseHandler.stop();
-            System.out.println("fdsfsdfsad");
         }
-
-        PauseHandler.stop();
-
+        destroyProcesses();
+        for (String str: resultStr) {
+            System.out.println(str);
+        }
+        System.exit(0);
     }
-
-    public void calculateResult() {
-
+    private static void destroyProcesses() {
+        processF.destroy();
+        processG.destroy();
     }
 
     public static void main(String[] args) throws IOException {
