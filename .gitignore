@@ -11,7 +11,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+
 *.war
 *.nar
 *.ear
@@ -71,8 +71,7 @@ cmake-build-*/
 # File-based project format
 *.iws
 
-# IntelliJ
-out/
+
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
