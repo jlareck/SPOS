@@ -12,16 +12,17 @@ public class FunctionG {
 
         switch (command) {
             case "0":
-                Thread.sleep(1000);
+                Thread.sleep(10000);
                 return 5;
             case "1":
                 return 5;
             case "2":
                 while (true) {}
             case "3":
+                Thread.sleep(10000);
                 return 0;
             case "4" : {
-                while(true){}
+                while (true) {}
             }
             case "5": {
                return 5;
@@ -31,8 +32,8 @@ public class FunctionG {
     }
     void run(String messageStr) throws IOException, InterruptedException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-
-        int value = IntOps.funcG(Integer.parseInt(messageStr));
+        int value = calculateG(messageStr);
+       // int value = IntOps.funcG(Integer.parseInt(messageStr));
         socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 9000));
         System.out.println(value);
         String result = "G "+ value;
