@@ -80,9 +80,9 @@ public class SchedulingAlgorithm {
 
     currentProcess = nextProcess;
     process = (Process) processVector.elementAt(currentProcess);
-
+    quantum = Scheduling.quantum;
     out.println("\nProcess: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked + ")"  + " Quantum " +quantum);
 
-    quantum = Scheduling.quantum;
+
   }
 }
