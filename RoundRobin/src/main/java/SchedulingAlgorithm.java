@@ -64,15 +64,18 @@ public class SchedulingAlgorithm {
   }
 
   public static void getNextProcess() {
-    int counter = 0;
-
     nextProcess = currentProcess + 1;
     if (nextProcess == processVector.size()) nextProcess = 0;
     process = (Process) processVector.elementAt(nextProcess);
 
     while (process.cpudone >= process.cputime) {
+
       nextProcess++;
+      if (nextProcess == processVector.size()) {
+        nextProcess = 0;
+      }
       process = (Process) processVector.elementAt(nextProcess);
+
     }
 
     currentProcess = nextProcess;
