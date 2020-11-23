@@ -22,7 +22,7 @@ public class Scheduling {
   private static Results result = new Results("null","null",0);
   private static String resultsFile = "Summary-Results";
   private static String configFile = "scheduling.conf";
-
+  private static int id = 0;
   private static void Init(String file) {
     File f = new File(file);
     String line;
@@ -64,7 +64,9 @@ public class Scheduling {
           }
           X = X * standardDev;
           cputime = (int) X + meanDev;
-          processVector.addElement(new Process(cputime, ioblocking, 0, 0, 0));
+          int arrivingTime = Common.s2i(st.nextToken());
+          processVector.addElement(new Process(id,cputime, ioblocking, 0, 0, 0,arrivingTime));
+          id++;
         }
         if (line.startsWith("runtime")) {
           StringTokenizer st = new StringTokenizer(line);
@@ -112,7 +114,7 @@ public class Scheduling {
           }
           X = X * standardDev;
           int cputime = (int) X + meanDev;
-          processVector.addElement(new Process(cputime,i*100,0,0,0));
+          processVector.addElement(new Process(id,cputime,i*100,0,0,0, 0));
           i++;
       }
     }
