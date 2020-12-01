@@ -2,7 +2,6 @@
 // the scheduling algorithm written by the user resides.
 // User modification should occur within the Run() function.
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Vector;
@@ -12,7 +11,7 @@ public class SchedulingAlgorithm {
   static int comptime = 0;
   static int currentProcess = 0;
   static int totalNumberOfProcesses;
-  static int currentCompletedNumberOfProcesses = 0;
+  static int currentNumberOfCompletedProcesses = 0;
   static int quantum = Scheduling.quantum;
   static String resultsFile = "Summary-Processes";
   static Process process;
@@ -54,9 +53,9 @@ public class SchedulingAlgorithm {
         }
         if (process !=null && process.cpudone == process.cputime) {
 
-          currentCompletedNumberOfProcesses++;
+          currentNumberOfCompletedProcesses++;
           out.println("Process: " + processVector.indexOf(process) + " completed... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked + ")"  + " Quantum " +quantum);
-          if (currentCompletedNumberOfProcesses == totalNumberOfProcesses) {
+          if (currentNumberOfCompletedProcesses == totalNumberOfProcesses) {
             result.compuTime = comptime;
             out.close();
             return result;
@@ -91,7 +90,7 @@ public class SchedulingAlgorithm {
           quantum--;
           comptime++;
         } else if (process != null) {
-          out.println("Process: " + process.id + " stopped because of quantum... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked + ")"  + " Quantum " + quantum);
+          out.println("Process: " + process.id + " stopped because quantum is zero... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked + ")"  + " Quantum " + quantum);
           getNextProcess();
           out.println("\nProcess: " + process.id + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked + ")"  + " Quantum " +quantum);
 
