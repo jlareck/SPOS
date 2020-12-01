@@ -90,6 +90,7 @@ public class SchedulingAlgorithm {
           quantum--;
           comptime++;
         } else if (process != null) {
+          process.ionext = 0;
           out.println("Process: " + process.id + " stopped because quantum is zero... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked + ")"  + " Quantum " + quantum);
           getNextProcess();
           out.println("\nProcess: " + process.id + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.numblocked + ")"  + " Quantum " +quantum);
