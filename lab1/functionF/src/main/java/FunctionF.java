@@ -12,9 +12,10 @@ public class FunctionF {
 
         switch (command) {
             case "0":
+                Thread.sleep(10000);
                 return 3;
             case "1":
-                Thread.sleep(3000);
+                Thread.sleep(12000);
                 return 3;
             case "2":
                 return 0;
@@ -31,8 +32,8 @@ public class FunctionF {
     }
     void run(String messageStr) throws IOException, InterruptedException {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-        //calculateF(messageStr);
-        int value =  IntOps.funcF(Integer.parseInt(messageStr));
+        int value = calculateF(messageStr);
+        //int value =  IntOps.funcF(Integer.parseInt(messageStr));
         socketChannel = SocketChannel.open(new InetSocketAddress("localhost", 9000));
         String result = "F "+ value;
         buffer.put(result.getBytes());

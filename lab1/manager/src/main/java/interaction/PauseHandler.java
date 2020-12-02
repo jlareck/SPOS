@@ -16,6 +16,7 @@ public class PauseHandler {
     }
     private static void reasonOfCancelation() {
 
+
         if (Server.fDone && !Server.gDone) {
             System.out.println("STATUS: CANCELLED");
             System.out.println("The process is stopped because function G hangs");
@@ -24,11 +25,13 @@ public class PauseHandler {
             System.out.println("STATUS: CANCELLED");
             System.out.println("The process is stopped because function F hangs");
         }
-
+        else if(!Server.fDone && !Server.gDone) {
+            System.out.println("STATUS: CANCELLED");
+            System.out.println("Functions F and G are not calculated");
+        }
+        System.out.println("Result of calculation is undefined");
     }
     public static void startPrompt() {
-
-
       //  String userInput = scanner.nextLine();
         Thread thread = Thread.currentThread();
         long promptStartTime = System.currentTimeMillis();
@@ -36,7 +39,6 @@ public class PauseHandler {
             Thread threadTime = new Thread(() -> {
                 while(System.currentTimeMillis() - promptStartTime < WAIT_TIME){}
                 if (!Thread.currentThread().isInterrupted()) {
-
                     stop();
                 }
             });
@@ -64,5 +66,4 @@ public class PauseHandler {
         }).start();
 
     }
-
 }

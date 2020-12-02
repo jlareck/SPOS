@@ -1,0 +1,120 @@
+Process: 0 joined... (698 100 0 0)
+Process: 1 joined... (698 324 0 0)
+Process: 2 joined... (698 600 0 0)
+Process: 2 stopped because quantum is zero... (698 600 47 0) Quantum 0
+
+Process: 1 registered... (698 324 1 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 51 0) Quantum 0
+
+Process: 2 registered... (698 600 47 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 97 0) Quantum 0
+
+Process: 0 registered... (698 100 2 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 52 0) Quantum 0
+
+Process: 1 registered... (698 324 51 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 101 0) Quantum 0
+
+Process: 2 registered... (698 600 97 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 147 0) Quantum 0
+
+Process: 0 registered... (698 100 52 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 102 0) Quantum 0
+
+Process: 1 registered... (698 324 101 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 151 0) Quantum 0
+
+Process: 2 registered... (698 600 147 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 197 0) Quantum 0
+
+Process: 0 registered... (698 100 102 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 152 0) Quantum 0
+
+Process: 1 registered... (698 324 151 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 201 0) Quantum 0
+
+Process: 2 registered... (698 600 197 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 247 0) Quantum 0
+
+Process: 0 registered... (698 100 152 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 202 0) Quantum 0
+
+Process: 1 registered... (698 324 201 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 251 0) Quantum 0
+
+Process: 2 registered... (698 600 247 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 297 0) Quantum 0
+
+Process: 0 registered... (698 100 202 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 252 0) Quantum 0
+
+Process: 1 registered... (698 324 251 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 301 0) Quantum 0
+
+Process: 2 registered... (698 600 297 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 347 0) Quantum 0
+
+Process: 0 registered... (698 100 252 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 302 0) Quantum 0
+
+Process: 1 registered... (698 324 301 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 351 0) Quantum 0
+
+Process: 2 registered... (698 600 347 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 397 0) Quantum 0
+
+Process: 0 registered... (698 100 302 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 352 0) Quantum 0
+
+Process: 1 registered... (698 324 351 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 401 0) Quantum 0
+
+Process: 2 registered... (698 600 397 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 447 0) Quantum 0
+
+Process: 0 registered... (698 100 352 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 402 0) Quantum 0
+
+Process: 1 registered... (698 324 401 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 451 0) Quantum 0
+
+Process: 2 registered... (698 600 447 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 497 0) Quantum 0
+
+Process: 0 registered... (698 100 402 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 452 0) Quantum 0
+
+Process: 1 registered... (698 324 451 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 501 0) Quantum 0
+
+Process: 2 registered... (698 600 497 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 547 0) Quantum 0
+
+Process: 0 registered... (698 100 452 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 502 0) Quantum 0
+
+Process: 1 registered... (698 324 501 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 551 0) Quantum 0
+
+Process: 2 registered... (698 600 547 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 597 0) Quantum 0
+
+Process: 0 registered... (698 100 502 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 552 0) Quantum 0
+
+Process: 1 registered... (698 324 551 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 601 0) Quantum 0
+
+Process: 2 registered... (698 600 597 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 647 0) Quantum 0
+
+Process: 0 registered... (698 100 552 0) Quantum 50
+Process: 0 stopped because quantum is zero... (698 100 602 0) Quantum 0
+
+Process: 1 registered... (698 324 601 0) Quantum 50
+Process: 1 stopped because quantum is zero... (698 324 651 0) Quantum 0
+
+Process: 2 registered... (698 600 647 0) Quantum 50
+Process: 2 stopped because quantum is zero... (698 600 697 0) Quantum 0
+
+Process: 0 registered... (698 100 602 0) Quantum 50

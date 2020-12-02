@@ -9,6 +9,7 @@ import java.nio.channels.SocketChannel;
 import java.net.InetSocketAddress;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Server {
@@ -56,7 +57,7 @@ public class Server {
             serverSocketChannel.configureBlocking(false);
             String pathF = "/Users/mykolamedynsky/Desktop/spos/lab1/out/artifacts/functionF_jar/functionF.jar";
             String pathG = "/Users/mykolamedynsky/Desktop/spos/lab1/out/artifacts/functionG_jar/functionG.jar";
-            ProcessBuilder builderF = new ProcessBuilder("java", "-jar", pathF,String.valueOf(action));
+            ProcessBuilder builderF = new ProcessBuilder("java", "-jar", pathF, String.valueOf(action));
             ProcessBuilder builderG = new ProcessBuilder("java", "-jar", pathG, String.valueOf(action));
             if (action.equals("0") || action.equals("2") || action.equals("4")) {
                 processF = builderF.start();
@@ -69,7 +70,7 @@ public class Server {
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             while(cancel) {
                 SocketChannel socketChannel = serverSocketChannel.accept();
-
+               // System.out.println("Block");
                 if (socketChannel != null) {
 
                     buffer.clear();
@@ -89,26 +90,33 @@ public class Server {
                     String gotData = new String(data);
 
 
-
-
                     String[] parsedData = gotData.split(" ");
-                    String functionResult = "The result of function " + parsedData[0] + " is: " + parsedData[1];
+                    //String functionResult = "The result of function " + parsedData[0] + " is: " + parsedData[1];
 
-                    resultStr.add(functionResult);
+                    //resultStr.add(functionResult);
 
                     if (parsedData[0].equals("F")) {
-                        System.out.println("Server received result from function F");
+                        System.out.println("Server received result from function F: "+ parsedData[1]);
                         fDone = true;
                     }
 
                     else if (parsedData[0].equals("G")) {
-                        System.out.println("Server received result from function G");
+                        System.out.println("Server received result from function G " + parsedData[1]);
                         gDone = true;
                     }
                     if (parsedData[1].equals("0")) {
                         System.out.println("The function " + parsedData[0] + " returned zero");
+                        if(parsedData[0].equals("F")) {
+                            System.out.println("STATUS: function G hangs");
+
+                        }
+                        else {
+                            System.out.println("STATUS: function F hangs");
+                        }
+                        System.out.println("Result of calculation is zero");
                         end = System.nanoTime();
                         System.out.println("Time of execution: " + (end - start));
+
                        // PauseHandler.stop();
                         break;
                     }
@@ -145,8 +153,6 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        new Menu().menu();
+         new Menu().menu();
     }
-
-
 }
