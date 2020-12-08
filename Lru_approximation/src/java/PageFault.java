@@ -1,19 +1,19 @@
+
 /* It is in this file, specifically the replacePage function that will
    be called by MemoryManagement when there is a page fault.  The 
    users of this program should rewrite PageFault to implement the 
    page replacement algorithm.
 */
 
-  // This PageFault file is an example of the FIFO Page Replacement 
-  // Algorithm as described in the Memory Management section.
+// This PageFault file is an example of the FIFO Page Replacement
+// Algorithm as described in the Memory Management section.
 
 import java.util.*;
-
 
 public class PageFault {
 
   /**
-   * The page replacement algorithm for the memory management sumulator.
+   * The page replacement algorithm for the memory management simulator.
    * This method gets called whenever a page needs to be replaced.
    * <p>
    * The page replacement algorithm included with the simulator is 
@@ -50,44 +50,36 @@ public class PageFault {
    * @param controlPanel represents the graphical element of the 
    *   simulator, and allows one to modify the current display.
    */
-  public static void replacePage ( Vector mem , int virtPageNum , int replacePageNum , ControlPanel controlPanel ) 
+  public static void replacePage ( Vector mem , int virtPageNum , int replacePageNum , ControlPanel controlPanel )
   {
     int count = 0;
-    int oldestPage = -1;
-    int oldestTime = 0;
-    int firstPage = -1;
-    int map_count = 0;
-    boolean mapped = false;
+    int theLowesRbitsValue = 256;
+    int pageNumber = 0;
 
-    while ( ! (mapped) || count != virtPageNum ) {
+    while ( count != virtPageNum ) {
       Page page = ( Page ) mem.elementAt( count );
       if ( page.physical != -1 ) {
-        if (firstPage == -1) {
-          firstPage = count;
-        }
-        if (page.inMemTime > oldestTime) {
-          oldestTime = page.inMemTime;
-          oldestPage = count;
-          mapped = true;
+        System.out.println(count + " " + page.bitsRVector);
+        if (page.valueRbits() < theLowesRbitsValue) {
+          theLowesRbitsValue = page.valueRbits();
+          pageNumber = count;
         }
       }
       count++;
-      if ( count == virtPageNum ) {
-        mapped = true;
-      }
     }
-    if (oldestPage == -1) {
-      oldestPage = firstPage;
-    }
-    Page page = ( Page ) mem.elementAt( oldestPage );
-    Page nextpage = ( Page ) mem.elementAt( replacePageNum );
-    controlPanel.removePhysicalPage( oldestPage );
+    Page page = (Page) mem.elementAt(pageNumber);
+    Page nextpage = (Page) mem.elementAt(replacePageNum);
+    controlPanel.removePhysicalPage(pageNumber);
     nextpage.physical = page.physical;
-    controlPanel.addPhysicalPage( nextpage.physical , replacePageNum );
+    nextpage.R = 1;
+    controlPanel.addPhysicalPage(replacePageNum, nextpage.physical);
     page.inMemTime = 0;
     page.lastTouchTime = 0;
     page.R = 0;
     page.M = 0;
     page.physical = -1;
+    for(int i = 0; i < 8; i++){
+      page.bitsRVector.set(i, 0);
+    }
   }
 }

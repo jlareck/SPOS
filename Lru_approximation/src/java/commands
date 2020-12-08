@@ -2,10 +2,15 @@
 // READ <OPTIONAL number type: bin/hex/oct> <virtual memory address or random>
 // WRITE <OPTIONAL number type: bin/hex/oct> <virtual memory address or random>
 READ bin 100
-READ 19
-WRITE hex CC32
+READ 540708
+WRITE 49152
+READ 49152
+READ 32768
+WRITE 196608
+READ 999424
+WRITE 376832
 READ bin 100000000000000
 READ bin 100000000000000
 WRITE bin 110000000000001
-WRITE random
+
 
